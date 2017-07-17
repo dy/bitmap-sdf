@@ -1,6 +1,6 @@
-# calc-sdf
+# calc-sdf [![experimental](https://img.shields.io/badge/stability-unstable-green.svg)](http://github.com/badges/stability-badges)
 
-Calculate signed distance field. Fork of [tiny-sdf](https://github.com/dfcreative/calc-sdf) with reduced/generalized API.
+Calculate signed distance field. Fork of [tiny-sdf](https://github.com/mourner/tiny-sdf) with reduced API.
 
 ## Usage
 
