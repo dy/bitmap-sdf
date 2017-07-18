@@ -1,6 +1,6 @@
 # calc-sdf [![experimental](https://img.shields.io/badge/stability-experimental-red.svg)](http://github.com/badges/stability-badges)
 
-Calculate signed distance field. Fork of [tiny-sdf](https://github.com/mourner/tiny-sdf) with reduced API.
+Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https://github.com/mourner/tiny-sdf) with reduced API.
 
 ## Usage
 
@@ -9,7 +9,7 @@ Calculate signed distance field. Fork of [tiny-sdf](https://github.com/mourner/t
 ```js
 let calcSdf = requrie('calc-sdf')
 
-let arr = calcSdf(canvas)
+let distances = calcSdf(canvas)
 ```
 
 ### data = calcSdf(source, options?)
