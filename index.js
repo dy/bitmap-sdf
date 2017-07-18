@@ -13,7 +13,7 @@ function calcSDF(src, options) {
     var cutoff = options.cutoff == null ? 0.25 : options.cutoff
     var radius = options.radius == null ? 8 : options.radius
     var channel = options.channel || 0
-    var w, h, size, data, intData, stride, ctx, canvas, imgData
+    var w, h, size, data, intData, stride, ctx, canvas, imgData, i, l
 
     // handle image container
     if (ArrayBuffer.isView(src) || Array.isArray(src)) {
@@ -56,7 +56,7 @@ function calcSDF(src, options) {
         intData = data
         data = Array(w*h)
 
-        for (var i = 0, l = intData.length; i < l; i++) {
+        for (i = 0, l = intData.length; i < l; i++) {
             data[i] = intData[i*stride + channel] / 255
         }
     }
@@ -72,7 +72,7 @@ function calcSDF(src, options) {
     var z = Array(size + 1)
     var v = Array(size)
 
-    for (var i = 0, l = w * h; i < l; i++) {
+    for (i = 0, l = w * h; i < l; i++) {
         var a = data[i]
         gridOuter[i] = a === 1 ? 0 : a === 0 ? INF : Math.pow(Math.max(0, 0.5 - a), 2)
         gridInner[i] = a === 1 ? INF : a === 0 ? 0 : Math.pow(Math.max(0, a - 0.5), 2)
@@ -84,8 +84,7 @@ function calcSDF(src, options) {
     var dist = new Float32Array(w * h)
 
     for (i = 0, l = w*h; i < l; i++) {
-        var d = gridOuter[i] - gridInner[i]
-        dist[i] = clamp(1 - (d / radius + cutoff), 0, 1)
+        dist[i] = clamp(1 - ( (gridOuter[i] - gridInner[i]) / radius + cutoff), 0, 1)
     }
 
     return dist

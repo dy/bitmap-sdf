@@ -9,7 +9,7 @@ var calcSDF = require('./')
 var canvas = document.body.appendChild(document.createElement('canvas'))
 canvas.style.margin = '1rem 1rem 1rem 0'
 
-canvas.width = 200
+canvas.width = 165
 canvas.height = 150
 
 var ctx = canvas.getContext('2d')
@@ -23,7 +23,7 @@ ctx.fillText('X', 50, 100)
 var out = document.body.appendChild(document.createElement('canvas'))
 out.style.margin = '1rem 1rem 1rem 0'
 
-out.width = 200
+out.width = 165
 out.height = 150
 var outCtx = out.getContext('2d')
 
@@ -50,17 +50,17 @@ function update () {
 	})
 	console.timeEnd('sdf')
 
-	let imgArr = new Uint8ClampedArray(200*150*4)
-	for (let i = 0; i < 200; i++) {
+	let imgArr = new Uint8ClampedArray(165*150*4)
+	for (let i = 0; i < 165; i++) {
 		for (let j = 0; j < 150; j++) {
-			imgArr[j*200*4 + i*4 + 0] = arr[j*200+i]*255
-			imgArr[j*200*4 + i*4 + 1] = arr[j*200+i]*255
-			imgArr[j*200*4 + i*4 + 2] = arr[j*200+i]*255
-			imgArr[j*200*4 + i*4 + 3] = 255
+			imgArr[j*165*4 + i*4 + 0] = arr[j*165+i]*255
+			imgArr[j*165*4 + i*4 + 1] = arr[j*165+i]*255
+			imgArr[j*165*4 + i*4 + 2] = arr[j*165+i]*255
+			imgArr[j*165*4 + i*4 + 3] = 255
 		}
 	}
 
-	var data = new ImageData(imgArr, 200, 150)
+	var data = new ImageData(imgArr, 165, 150)
 	outCtx.putImageData(data, 0, 0)
 }
 

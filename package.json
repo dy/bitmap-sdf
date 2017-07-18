@@ -1,0 +1,34 @@
+{
+  "name": "calc-sdf",
+  "version": "1.0.0",
+  "description": "Calculate SDF for image/bw-data/array",
+  "main": "index.js",
+  "dependencies": {
+    "clamp": "^1.0.1",
+    "enable-mobile": "^1.0.7"
+  },
+  "devDependencies": {
+    "bubleify": "^0.7.0"
+  },
+  "scripts": {
+    "test": "budo test",
+    "build": "browserify test.js -g bubleify | indexhtmlify | metadataify | github-cornerify > index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfcreative/calc-sdf.git"
+  },
+  "keywords": [
+    "sdf",
+    "signed-distance",
+    "image-sdf",
+    "bitmap",
+    "bwdist"
+  ],
+  "author": "Dima Yv <dfcreative@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dfcreative/calc-sdf/issues"
+  },
+  "homepage": "https://github.com/dfcreative/calc-sdf#readme"
+}
