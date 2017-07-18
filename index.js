@@ -21,8 +21,8 @@ function calcSDF(src, options) {
         w = options.width, h = options.height
         data = src
 
-        if (!options.channels) stride = Math.floor(src.length / w / h)
-        else stride = options.channels
+        if (!options.stride) stride = Math.floor(src.length / w / h)
+        else stride = options.stride
     }
     else {
         if (src instanceof global.HTMLCanvasElement) {

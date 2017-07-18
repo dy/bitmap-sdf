@@ -1,4 +1,4 @@
-# calc-sdf [![experimental](https://img.shields.io/badge/stability-experimental-red.svg)](http://github.com/badges/stability-badges)
+# calc-sdf [![unstable](https://img.shields.io/badge/stability-unstable-green.svg)](http://github.com/badges/stability-badges)
 
 Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https://github.com/mourner/tiny-sdf) with reduced API.
 
@@ -12,20 +12,20 @@ let calcSdf = requrie('calc-sdf')
 let distances = calcSdf(canvas)
 ```
 
-### data = calcSdf(source, options?)
+### dist = calcSdf(source, options?)
 
-Get signed distance field array for the input `source` data, based on `options`. Returns _Float32Array_ with 1-channel distance values within `0..1` range.
+Calculate distance field the input `source` data, based on `options`. Returns array with 1-channel distance values from `0..1` range.
 
-Source:
+#### Source:
 
 Type | Meaning
 ---|---
-_Canvas_, _Context2D_ | Reads full canvas image data, calculates distance for `options.channel`, by default `0`, ie. red channel.
-_ImageData_ | Calculates distance for the image data based on `options.channel`
-_Uint8ClampedArray_, _Uint8Array_ | Handles raw pixel data, requires `options.width` and `options.height`. Number of channels is detected from `width` and `height`.
-_Float32Array_, _Array_ | Handles raw numbers from `0..1` range, requires `options.width` and `options.height`. Number of channels is detected from `width` and `height`.
+_Canvas_, _Context2D_ | Calculates sdf for the full canvas image data based on `options.channel`, by default `0`, ie. red channel.
+_ImageData_ | Calculates sdf for the image data based on `options.channel`
+_Uint8ClampedArray_, _Uint8Array_ | Handles raw pixel data, requires `options.width` and `options.height`. Stride is detected from `width` and `height`.
+_Float32Array_, _Array_ | Handles raw numbers from `0..1` range, requires `options.width` and `options.height`. Stride is detected from `width` and `height`.
 
-Options:
+#### Options:
 
 Property | Default | Meaning
 ---|---|---
@@ -34,7 +34,7 @@ Property | Default | Meaning
 `width` | `canvas.width` | Width of input data, if array
 `height` | `canvas.height` | Height of input data, if array
 `channel` | `0` | Channel number, `0` is red, `1` is green, `2` is blue, `3` is alpha.
-`channels` | `null` | Explicitly indicate number of channels per pixel, ie. stride. Not needed if `height` and `width` are provided.
+`stride` | `null` | Explicitly indicate number of channels per pixel. Not needed if `height` and `width` are provided.
 
 ## License
 
