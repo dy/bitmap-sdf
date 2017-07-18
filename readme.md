@@ -1,17 +1,17 @@
-# calc-sdf [![unstable](https://img.shields.io/badge/stability-unstable-green.svg)](http://github.com/badges/stability-badges)
+# bitmap-sdf [![unstable](https://img.shields.io/badge/stability-unstable-green.svg)](http://github.com/badges/stability-badges)
 
 Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https://github.com/mourner/tiny-sdf) with reduced API.
 
-![calc-sdf](https://raw.githubusercontent.com/dfcreative/calc-sdf/master/preview.png)
+![bitmap-sdf](https://raw.githubusercontent.com/dfcreative/bitmap-sdf/master/preview.png)
 
-[Demo](https://dfcreative.github.io/calc-sdf/)
+[Demo](https://dfcreative.github.io/bitmap-sdf/)
 
 ## Usage
 
-[![npm install calc-sdf](https://nodei.co/npm/calc-sdf.png?mini=true)](https://npmjs.org/package/calc-sdf/)
+[![npm install bitmap-sdf](https://nodei.co/npm/bitmap-sdf.png?mini=true)](https://npmjs.org/package/bitmap-sdf/)
 
 ```js
-let calcSdf = requrie('calc-sdf')
+let calcSdf = requrie('bitmap-sdf')
 
 let distances = calcSdf(canvas)
 ```
