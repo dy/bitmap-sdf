@@ -1,6 +1,6 @@
 # bitmap-sdf [![unstable](https://img.shields.io/badge/stability-unstable-green.svg)](http://github.com/badges/stability-badges)
 
-Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https://github.com/mourner/tiny-sdf) with reduced API.
+Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https://github.com/mapbox/tiny-sdf) with reduced API.
 
 ![bitmap-sdf](https://raw.githubusercontent.com/dfcreative/bitmap-sdf/master/preview.png)
 
