@@ -40,6 +40,12 @@ Property | Default | Meaning
 `channel` | `0` | Channel number, `0` is red, `1` is green, `2` is blue, `3` is alpha.
 `stride` | `null` | Explicitly indicate number of channels per pixel. Not needed if `height` and `width` are provided.
 
+## See also
+
+* [font-atlas-sdf](https://github.com/hughsk/font-atlas-sdf) − generate sdf atlas for a font.
+* [tiny-sdf](https://github.com/mapbox/tiny-sdf) − fast glyph signed distance field generation.
+* [optical-properties](https://github.com/dfcreative/optical-properties) − glyph optical center and bounding box calculation
+
 ## License
 
 (c) 2017 Dima Yv. MIT License
