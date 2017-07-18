@@ -1,4 +1,4 @@
-# calc-sdf [![experimental](https://img.shields.io/badge/stability-unstable-green.svg)](http://github.com/badges/stability-badges)
+# calc-sdf [![experimental](https://img.shields.io/badge/stability-experimental-red.svg)](http://github.com/badges/stability-badges)
 
 Calculate signed distance field. Fork of [tiny-sdf](https://github.com/mourner/tiny-sdf) with reduced API.
 
@@ -9,12 +9,21 @@ Calculate signed distance field. Fork of [tiny-sdf](https://github.com/mourner/t
 ```js
 let calcSdf = requrie('calc-sdf')
 
-let result = calcSdf(data)
+let arr = calcSdf(canvas)
 ```
 
-### data = calcSdf(data, options?)
+### data = calcSdf(source, options?)
 
-Get signed distance field array for the input data, based on options. `data` can be a canvas, 2d context, ImageData, Uint8ClampedArray, Uint8Array, Float32Array or ndarray. Returned data has the same format as input data.
+Get signed distance field array for the input `source` data, based on `options`. Returns _Float32Array_ with 1-channel distance values within `0..1` range.
+
+Source:
+
+Type | Meaning
+---|---
+_Canvas_, _Context2D_ | Reads full canvas image data, calculates distance for `options.channel`, by default `0`, ie. red channel.
+_ImageData_ | Calculates distance for the image data based on `options.channel`
+_Uint8ClampedArray_, _Uint8Array_ | Handles raw pixel data, requires `options.width` and `options.height`. Number of channels is detected from `width` and `height`.
+_Float32Array_, _Array_ | Handles raw numbers from `0..1` range, requires `options.width` and `options.height`. Number of channels is detected from `width` and `height`.
 
 Options:
 
@@ -24,7 +33,8 @@ Property | Default | Meaning
 `radius` | `10` | Max length of SDF, ie. the size of SDF around the `cutoff`
 `width` | `canvas.width` | Width of input data, if array
 `height` | `canvas.height` | Height of input data, if array
-`channel` | `0` | Channel number, if pixel data/canvas
+`channel` | `0` | Channel number, `0` is red, `1` is green, `2` is blue, `3` is alpha.
+`channels` | `null` | Explicitly indicate number of channels per pixel, ie. stride. Not needed if `height` and `width` are provided.
 
 ## License
 

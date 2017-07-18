@@ -1,24 +1,30 @@
 'use strict'
 
+require('enable-mobile')
+document.body.style.fontFamily = 'sans-serif'
+document.body.style.padding = '2rem'
+
 var calcSDF = require('./')
 
 var canvas = document.body.appendChild(document.createElement('canvas'))
+canvas.style.margin = '1rem 1rem 1rem 0'
 
 canvas.width = 200
-canvas.height = 300
+canvas.height = 150
 
 var ctx = canvas.getContext('2d')
 ctx.fillStyle = 'black'
 ctx.fillRect(0,0,canvas.width, canvas.height)
 ctx.fillStyle = 'white'
-ctx.font = 'bold 200px sans-serif'
-ctx.fillText('X', 100, 100)
+ctx.font = 'bold 100px sans-serif'
+ctx.fillText('X', 50, 100)
 
 
 var out = document.body.appendChild(document.createElement('canvas'))
+out.style.margin = '1rem 1rem 1rem 0'
 
 out.width = 200
-out.height = 300
+out.height = 150
 var outCtx = out.getContext('2d')
 
 outCtx.drawImage(canvas, 0, 0);
@@ -29,24 +35,39 @@ var cutoff = 0, radius = 10
 update()
 
 function update () {
+	var idata = ctx.getImageData(0,0,canvas.width, canvas.height).data
+	var data = Array(canvas.width*canvas.height)
+	for (var i = 0; i < data.length; i++) {
+		data[i] = idata[i*4]/255
+	}
+
 	console.time('sdf')
-	var arr = calcSDF(canvas, cutoff, radius)
+	var arr = calcSDF(data, {
+		cutoff: cutoff,
+		radius: radius,
+		width: canvas.width,
+		height:  canvas.height
+	})
 	console.timeEnd('sdf')
 
-	let imgArr = new Uint8ClampedArray(200*300*4)
+	let imgArr = new Uint8ClampedArray(200*150*4)
 	for (let i = 0; i < 200; i++) {
-		for (let j = 0; j < 300; j++) {
-			imgArr[j*200*4 + i*4 + 0] = arr[j*200+i]
-			imgArr[j*200*4 + i*4 + 1] = arr[j*200+i]
-			imgArr[j*200*4 + i*4 + 2] = arr[j*200+i]
+		for (let j = 0; j < 150; j++) {
+			imgArr[j*200*4 + i*4 + 0] = arr[j*200+i]*255
+			imgArr[j*200*4 + i*4 + 1] = arr[j*200+i]*255
+			imgArr[j*200*4 + i*4 + 2] = arr[j*200+i]*255
 			imgArr[j*200*4 + i*4 + 3] = 255
 		}
 	}
 
-	var data = new ImageData(imgArr, 200, 300)
+	var data = new ImageData(imgArr, 200, 150)
 	outCtx.putImageData(data, 0, 0)
 }
 
+
+var cutoffTitle = document.body.appendChild(document.createElement('label'))
+cutoffTitle.innerHTML = 'Cutoff'
+cutoffTitle.style.display = 'block'
 
 var cutoffEl = document.body.appendChild(document.createElement('input'))
 cutoffEl.type = 'range'
@@ -59,6 +80,10 @@ cutoffEl.oninput = e => {
 	update()
 }
 
+
+var radTitle = document.body.appendChild(document.createElement('label'))
+radTitle.innerHTML = 'Radius'
+radTitle.style.display = 'block'
 
 var radEl = document.body.appendChild(document.createElement('input'))
 radEl.type = 'range'
