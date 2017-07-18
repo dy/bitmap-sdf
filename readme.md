@@ -13,12 +13,34 @@ Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https
 ```js
 let calcSdf = requrie('bitmap-sdf')
 
+//draw image
+let canvas = document.body.appendChild(document.createElement('canvas'))
+let ctx = canvas.getContext('2d')
+ctx.fillStyle = 'white'
+ctx.font = 'bold 30px sans-serif'
+ctx.fillText('X', 20, 20)
+
+//calculate distances
 let distances = calcSdf(canvas)
+
+//show distances
+let w = canvas.width, h = canvas.height
+let imgArr = new Uint8ClampedArray(w*h*4)
+for (let i = 0; i < w; i++) {
+	for (let j = 0; j < h; j++) {
+		imgArr[j*w*4 + i*4 + 0] = arr[j*w+i]*255
+		imgArr[j*w*4 + i*4 + 1] = arr[j*w+i]*255
+		imgArr[j*w*4 + i*4 + 2] = arr[j*w+i]*255
+		imgArr[j*w*4 + i*4 + 3] = 255
+	}
+}
+var data = new ImageData(imgArr, w, h)
+outCtx.putImageData(data, 0, 0)
 ```
 
 ### dist = calcSdf(source, options?)
 
-Calculate distance field for the input `source` data, based on `options`. Returns 1-channel array distance values from `0..1` range.
+Calculate distance field for the input `source` data, based on `options`. Returns 1-channel array with distance values from `0..1` range.
 
 #### Source:
 
