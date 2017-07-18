@@ -15,6 +15,7 @@ let calcSdf = requrie('bitmap-sdf')
 
 //draw image
 let canvas = document.body.appendChild(document.createElement('canvas'))
+let w = canvas.width = 200, h = canvas.height = 200
 let ctx = canvas.getContext('2d')
 ctx.fillStyle = 'white'
 ctx.font = 'bold 30px sans-serif'
@@ -24,7 +25,6 @@ ctx.fillText('X', 20, 20)
 let distances = calcSdf(canvas)
 
 //show distances
-let w = canvas.width, h = canvas.height
 let imgArr = new Uint8ClampedArray(w*h*4)
 for (let i = 0; i < w; i++) {
 	for (let j = 0; j < h; j++) {
@@ -35,7 +35,7 @@ for (let i = 0; i < w; i++) {
 	}
 }
 var data = new ImageData(imgArr, w, h)
-outCtx.putImageData(data, 0, 0)
+ctx.putImageData(data, 0, 0)
 ```
 
 ### dist = calcSdf(source, options?)
