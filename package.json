@@ -23,7 +23,8 @@
     "signed-distance",
     "image-sdf",
     "bitmap",
-    "bwdist"
+    "bwdist",
+    "tiny-sdf"
   ],
   "author": "Dima Yv <dfcreative@gmail.com>",
   "license": "MIT",
