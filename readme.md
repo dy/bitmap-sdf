@@ -18,7 +18,7 @@ let distances = calcSdf(canvas)
 
 ### dist = calcSdf(source, options?)
 
-Calculate distance field the input `source` data, based on `options`. Returns array with 1-channel distance values from `0..1` range.
+Calculate distance field for the input `source` data, based on `options`. Returns 1-channel array distance values from `0..1` range.
 
 #### Source:
 
