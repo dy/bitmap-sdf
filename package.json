@@ -1,6 +1,6 @@
 {
   "name": "bitmap-sdf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Calculate SDF for image/bw-data/array",
   "main": "index.js",
   "dependencies": {
