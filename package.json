@@ -4,10 +4,10 @@
   "description": "Calculate SDF for image/bw-data/array",
   "main": "index.js",
   "dependencies": {
-    "clamp": "^1.0.1",
-    "enable-mobile": "^1.0.7"
+    "clamp": "^1.0.1"
   },
   "devDependencies": {
+    "enable-mobile": "^1.0.7",
     "bubleify": "^0.7.0"
   },
   "scripts": {
