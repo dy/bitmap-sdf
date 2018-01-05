@@ -25,7 +25,7 @@ function calcSDF(src, options) {
         else stride = options.stride
     }
     else {
-        if (src instanceof global.HTMLCanvasElement) {
+        if (global.HTMLCanvasElement && src instanceof global.HTMLCanvasElement) {
             canvas = src
             ctx = canvas.getContext('2d')
             w = canvas.width, h = canvas.height
@@ -33,7 +33,7 @@ function calcSDF(src, options) {
             data = imgData.data
             stride = 4
         }
-        else if (src instanceof global.CanvasRenderingContext2D) {
+        else if (global.CanvasRenderingContext2D && src instanceof global.CanvasRenderingContext2D) {
             canvas = src.canvas
             ctx = src
             w = canvas.width, h = canvas.height
@@ -41,7 +41,7 @@ function calcSDF(src, options) {
             data = imgData.data
             stride = 4
         }
-        else if (src instanceof global.ImageData) {
+        else if (global.ImageData && src instanceof global.ImageData) {
             imgData = src
             w = src.width, h = src.height
             data = imgData.data
