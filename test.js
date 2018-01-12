@@ -50,7 +50,12 @@ function update () {
 	})
 	console.timeEnd('sdf')
 
-	let imgArr = new Uint8ClampedArray(165*150*4)
+	let imgArr
+	if (global.Uint8ClampedArray) {
+		imgArr = new Uint8ClampedArray(165*150*4)
+	} else {
+		imgArr = Array(165*150*4)
+	}
 	for (let i = 0; i < 165; i++) {
 		for (let j = 0; j < 150; j++) {
 			imgArr[j*165*4 + i*4 + 0] = arr[j*165+i]*255
@@ -60,7 +65,20 @@ function update () {
 		}
 	}
 
-	var data = new ImageData(imgArr, 165, 150)
+	// IE way
+	var c = document.createElement('canvas');
+	var data = c.getContext('2d').createImageData(165, 150);
+
+	if (data.data.set) {
+		data.data.set(imgArr);
+	}
+	else {
+		for (var i = 0; i < imgArr.length; i++) {
+			data.data[i] = imgArr[i]
+		}
+	}
+
+	// var data = new ImageData(imgArr, 165, 150)
 	outCtx.putImageData(data, 0, 0)
 }
 

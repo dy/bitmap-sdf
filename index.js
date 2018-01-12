@@ -1,7 +1,6 @@
 'use strict'
 
 var clamp = require('clamp')
-var assert = require('assert')
 
 module.exports = calcSDF
 
@@ -17,7 +16,7 @@ function calcSDF(src, options) {
 
     // handle image container
     if (ArrayBuffer.isView(src) || Array.isArray(src)) {
-        assert(options.width && options.height, 'For raw data width and height should be provided by options')
+        if (!options.width || !options.height) throw Error('For raw data width and height should be provided by options')
         w = options.width, h = options.height
         data = src
 
@@ -25,7 +24,7 @@ function calcSDF(src, options) {
         else stride = options.stride
     }
     else {
-        if (global.HTMLCanvasElement && src instanceof global.HTMLCanvasElement) {
+        if (window.HTMLCanvasElement && src instanceof window.HTMLCanvasElement) {
             canvas = src
             ctx = canvas.getContext('2d')
             w = canvas.width, h = canvas.height
@@ -33,7 +32,7 @@ function calcSDF(src, options) {
             data = imgData.data
             stride = 4
         }
-        else if (global.CanvasRenderingContext2D && src instanceof global.CanvasRenderingContext2D) {
+        else if (window.CanvasRenderingContext2D && src instanceof window.CanvasRenderingContext2D) {
             canvas = src.canvas
             ctx = src
             w = canvas.width, h = canvas.height
@@ -41,7 +40,7 @@ function calcSDF(src, options) {
             data = imgData.data
             stride = 4
         }
-        else if (global.ImageData && src instanceof global.ImageData) {
+        else if (window.ImageData && src instanceof window.ImageData) {
             imgData = src
             w = src.width, h = src.height
             data = imgData.data
@@ -52,7 +51,7 @@ function calcSDF(src, options) {
     size = Math.max(w, h)
 
     //convert int data to floats
-    if (data instanceof Uint8ClampedArray || data instanceof Uint8Array) {
+    if ((window.Uint8ClampedArray && data instanceof window.Uint8ClampedArray) || (window.Uint8Array && data instanceof window.Uint8Array)) {
         intData = data
         data = Array(w*h)
 
@@ -61,7 +60,7 @@ function calcSDF(src, options) {
         }
     }
     else {
-        assert.equal(stride, 1, 'Raw data can have only 1 value per pixel')
+        if (stride !== 1) throw Error('Raw data can have only 1 value per pixel')
     }
 
     // temporary arrays for the distance transform
@@ -81,7 +80,7 @@ function calcSDF(src, options) {
     edt(gridOuter, w, h, f, d, v, z)
     edt(gridInner, w, h, f, d, v, z)
 
-    var dist = new Float32Array(w * h)
+    var dist = window.Float32Array ? new Float32Array(w * h) : new Array(w * h)
 
     for (i = 0, l = w*h; i < l; i++) {
         dist[i] = clamp(1 - ( (gridOuter[i] - gridInner[i]) / radius + cutoff), 0, 1)
