@@ -2,9 +2,9 @@
 
 Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https://github.com/mapbox/tiny-sdf) with reduced API.
 
-![bitmap-sdf](https://raw.githubusercontent.com/dfcreative/bitmap-sdf/master/preview.png)
+![bitmap-sdf](preview.png)
 
-[Demo](https://dfcreative.github.io/bitmap-sdf/)
+[Demo](https://dy.github.io/bitmap-sdf/)
 
 ## Usage
 
