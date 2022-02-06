@@ -68,6 +68,10 @@ Property | Default | Meaning
 * [tiny-sdf](https://github.com/mapbox/tiny-sdf) − fast glyph signed distance field generation.
 * [optical-properties](https://github.com/dfcreative/optical-properties) − glyph optical center and bounding box calculation
 
+## Alternatives
+
+* [disttransform.wat](https://github.com/LingDong-/wasm-fun/blob/master/wat/disttransform.wat)
+
 ## License
 
 (c) 2017 Dima Yv. MIT License
