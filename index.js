@@ -1,10 +1,8 @@
 'use strict'
 
-var clamp = require('clamp')
-
 module.exports = calcSDF
 
-var INF = 1e20;
+var INF = 1e20
 
 function calcSDF(src, options) {
     if (!options) options = {}
@@ -83,7 +81,7 @@ function calcSDF(src, options) {
     var dist = window.Float32Array ? new Float32Array(w * h) : new Array(w * h)
 
     for (i = 0, l = w*h; i < l; i++) {
-        dist[i] = clamp(1 - ( (gridOuter[i] - gridInner[i]) / radius + cutoff), 0, 1)
+        dist[i] = Math.min(Math.max(1 - ( (gridOuter[i] - gridInner[i]) / radius + cutoff), 0), 1)
     }
 
     return dist
