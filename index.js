@@ -53,7 +53,7 @@ function calcSDF(src, options) {
         intData = data
         data = Array(w*h)
 
-        for (i = 0, l = intData.length; i < l; i++) {
+        for (i = 0, l = Math.floor(intData.length / stride); i < l; i++) {
             data[i] = intData[i*stride + channel] / 255
         }
     }
