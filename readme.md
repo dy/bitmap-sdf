@@ -11,30 +11,30 @@ Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https
 [![npm install bitmap-sdf](https://nodei.co/npm/bitmap-sdf.png?mini=true)](https://npmjs.org/package/bitmap-sdf/)
 
 ```js
-let calcSdf = requrie('bitmap-sdf')
+const calcSdf = requrie('bitmap-sdf')
 
 //draw image
-let canvas = document.body.appendChild(document.createElement('canvas'))
-let w = canvas.width = 200, h = canvas.height = 200
-let ctx = canvas.getContext('2d')
+const canvas = document.body.appendChild(document.createElement('canvas'))
+const w = canvas.width = 200, h = canvas.height = 200
+const ctx = canvas.getContext('2d')
 ctx.fillStyle = 'white'
 ctx.font = 'bold 30px sans-serif'
 ctx.fillText('X', 20, 20)
 
 //calculate distances
-let distances = calcSdf(canvas)
+const distArr = calcSdf(canvas)
 
 //show distances
-let imgArr = new Uint8ClampedArray(w*h*4)
+const imgArr = new Uint8ClampedArray(w*h*4)
 for (let i = 0; i < w; i++) {
 	for (let j = 0; j < h; j++) {
-		imgArr[j*w*4 + i*4 + 0] = arr[j*w+i]*255
-		imgArr[j*w*4 + i*4 + 1] = arr[j*w+i]*255
-		imgArr[j*w*4 + i*4 + 2] = arr[j*w+i]*255
+		imgArr[j*w*4 + i*4 + 0] = distArr[j*w+i]*255
+		imgArr[j*w*4 + i*4 + 1] = distArr[j*w+i]*255
+		imgArr[j*w*4 + i*4 + 2] = distArr[j*w+i]*255
 		imgArr[j*w*4 + i*4 + 3] = 255
 	}
 }
-var data = new ImageData(imgArr, w, h)
+const data = new ImageData(imgArr, w, h)
 ctx.putImageData(data, 0, 0)
 ```
 
