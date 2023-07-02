@@ -11,7 +11,7 @@ Calculate signed distance field for an image / bw-data. Fork of [tiny-sdf](https
 [![npm install bitmap-sdf](https://nodei.co/npm/bitmap-sdf.png?mini=true)](https://npmjs.org/package/bitmap-sdf/)
 
 ```js
-const calcSdf = requrie('bitmap-sdf')
+const calcSdf = require('bitmap-sdf')
 
 //draw image
 const canvas = document.body.appendChild(document.createElement('canvas'))
